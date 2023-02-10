@@ -25,6 +25,7 @@ fn main() {
 
 unsafe fn walk_path(args: Vec<String>) {
     let root_dir = &args[1];
+    println!("Walking {}...", root_dir);
 
     for entry in WalkDir::new(root_dir) {
         match entry {
