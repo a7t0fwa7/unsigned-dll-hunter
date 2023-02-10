@@ -18,12 +18,10 @@ fn main() {
         println!("Usage: {} <root dir>", &args[0]);
         return;
     }
-    unsafe {
-        walk_path(args);
-    }
+    walk_path(args);
 }
 
-unsafe fn walk_path(args: Vec<String>) {
+ fn walk_path(args: Vec<String>) {
     let root_dir = &args[1];
     println!("Walking {}...", root_dir);
 
@@ -32,7 +30,9 @@ unsafe fn walk_path(args: Vec<String>) {
             Ok(entry) => {
                 let path = entry.path().to_str().unwrap();
                 if str::ends_with(&path, ".dll") {
-                    process_file(path);
+                    unsafe {
+                        process_file(path);
+                    }
                 }
             }
             Err(_entry) => {
