@@ -47,7 +47,7 @@ unsafe fn process_file(path: &str) {
         hFile: HANDLE::default() as HANDLE,
         pcwszFilePath: PCWSTR::from_raw(path.encode_utf16().collect::<Vec<u16>>().as_mut_ptr()),
         pgKnownSubject: 0 as *mut GUID,
-        cbStruct: (mem::size_of::<&WINTRUST_FILE_INFO> as u32),
+        cbStruct: (mem::size_of::<WINTRUST_FILE_INFO> as u32),
     };
 
     let wintrust_data_0 = WINTRUST_DATA_0 {
